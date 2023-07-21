@@ -7,23 +7,38 @@ class DBClient {
     const database = process.env.DB_DATABASE || 'files_manager';
     this.url = `mongodb://${host}:${port}/${database}`;
     this.client = new MongoClient(this.url, { useUnifiedTopology: true });
-    this.client.connect();
+    this.db = null;
+  }
+
+  async connect() {
+    try {
+      await this.client.connect();
+      this.db = this.client.db();
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   async isAlive() {
-    return this.client.isConnected();
+    return this.db !== null;
   }
 
   async nbUsers() {
-    const db = this.client.db();
-    const collection = db.collection('users');
+    if (!this.db) {
+      await this.connect();
+    }
+
+    const collection = this.db.collection('users');
     const count = await collection.countDocuments();
     return count;
   }
 
   async nbFiles() {
-    const db = this.client.db();
-    const collection = db.collection('files');
+    if (!this.db) {
+      await this.connect();
+    }
+
+    const collection = this.db.collection('files');
     const count = await collection.countDocuments();
     return count;
   }
