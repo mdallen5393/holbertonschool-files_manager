@@ -20,17 +20,18 @@ class DBClient {
   }
 
   async isAlive() {
-    if (!this.db) {
-      await this.connect();
-    }
+    // if (!this.db) {
+    //   await this.connect();
+    // }
 
-    try {
-      const serverStatus = await this.db.command({ serverStatus: 1 });
-      return serverStatus.ok === 1;
-    } catch (err) {
-      console.error(err);
-      return false;
-    }
+    // try {
+    //   const serverStatus = await this.db.command({ serverStatus: 1 });
+    //   return serverStatus.ok === 1;
+    // } catch (err) {
+    //   console.error(err);
+    //   return false;
+    // }
+    return false
   }
 
   async nbUsers() {
