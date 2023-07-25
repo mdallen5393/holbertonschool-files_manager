@@ -4,6 +4,7 @@ const router = express.Router();
 
 // Require controllers
 const AppController = require('../controllers/AppController');
+const UsersController = require('../controllers/UsersController');
 
 // Endpoints
 router.get('/status', AppController.getStatus);
