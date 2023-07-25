@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
 const dbClient = require('../utils/db');
-const { FOLDER_PATH } = process.env;
+const redisClient = require('../utils/redis');
 
 const FilesController = {
   async postUpload(req, res) {
