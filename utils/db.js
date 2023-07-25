@@ -36,7 +36,7 @@ class DBClient {
     const db = this.client.db();
     const collection = db.collection('users');
     return collection.findOne({ _id: userId });
-  }  
+  }
 
   async createUser(email, password) {
     const db = this.client.db();
