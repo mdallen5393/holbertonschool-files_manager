@@ -15,7 +15,7 @@ const UsersController = {
     try {
       const user = await dbClient.getUserByEmail(email);
       if (user) {
-        return res.status(400).json({ error: 'Already exists' });
+        return res.status(400).json({ error: 'Already exist' });
       }
 
       const hashedPwd = sha1(password);
@@ -26,7 +26,8 @@ const UsersController = {
       console.error(err);
       res.status(500).json({ error: 'Internal server error' });
     }
-  }
+    return null;
+  },
 };
 
 module.exports = UsersController;
