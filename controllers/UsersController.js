@@ -50,7 +50,7 @@ const UsersController = {
     }
 
     return res.status(200).json({ email: user.email, id: user._id });
-  }
+  },
 };
 
 module.exports = UsersController;
